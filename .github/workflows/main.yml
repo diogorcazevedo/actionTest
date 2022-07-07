@@ -1,18 +1,19 @@
 on: [push]
 
 jobs:
-  deploy_job:
+  upload_files:
     runs-on: ubuntu-latest
-    name: deploy
+    name: Upload a builded file.
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
-      - name: deploy file
-        uses: wlixcc/SFTP-Deploy-Action@v1.2.3
+        uses: actions/checkout@v2.3.4
+      - name: Upload Files
+        id: upload
+        uses: Creepios/sftp-action@v1.0.3
         with:
+          host: ${{ secrets.APP_HOST }}
+          port: 22
           username: ${{ secrets.APP_USER }}
-          server: ${{ secrets.APP_HOST }}
-          ssh_private_key: ${{ secrets.SSH_PASSWORD }}
-          local_path: './static/*'
-          remote_path: ${{ secrets.REMOTE_TARGET }}
-          sftpArgs: '-o ConnectTimeout=5'
+          password: ${{ secrets.SSH_PASSWORD }}
+          localPath: 'git@github.com:diogorcazevedo/actionTest.git'
+          remotePath: ${{ secrets.REMOTE_TARGET }}
