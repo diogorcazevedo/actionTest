@@ -7,13 +7,16 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Upload Files
-        id: upload
-        uses: Creepios/sftp-action@v1.0.3
+      - name: FTP Deployer
+        uses: sand4rt/ftp-deployer@v1.4
         with:
-          host: ${{ secrets.APP_HOST }}
-          port: 22
-          username: ${{ secrets.APP_USER }}
-          password: ${{ secrets.SSH_PASSWORD }}
-          localPath: '/'
-          remotePath: '/'
+          sftp: true # optional
+          host: ${{ secrets.APP_HOST }} # e.g. ftp.host.com or sftp.host.com (without ftp:// or ftps://)
+          port: 22 # optional, default is: 21
+          username: ${{ secrets.APP_USER }} # FTP username
+          password: ${{ secrets.SSH_PASSWORD }} # FTP password
+          local_folder: dist # optional, local path, default is: dist
+          cleanup: false # optional, remove existing files inside FTP remote folder
+          include: '[]' # optional, e.g. '['dist']'
+          exclude: '[]' # optional, e.g. '['node_modules/**', '.git/**', '*.env']'
+          pasive: true # optional
