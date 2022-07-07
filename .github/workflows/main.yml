@@ -15,5 +15,5 @@ jobs:
           port: 22
           username: ${{ secrets.APP_USER }}
           password: ${{ secrets.SSH_PASSWORD }}
-          localPath: 'git@github.com:diogorcazevedo/actionTest.git'
+          localPath: '/Users/diogoazevedo/Documents/htdocs/php/actionTest'
           remotePath: ${{ secrets.REMOTE_TARGET }}
