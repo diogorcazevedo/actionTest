@@ -16,6 +16,7 @@ jobs:
           username: ${{ secrets.APP_USER }} # FTP username
           password: ${{ secrets.SSH_PASSWORD }} # FTP password
           cleanup: false # optional, remove existing files inside FTP remote folder
-          include: "['test']" # optional, e.g. '['dist']'
+          localRoot: 'test',
+          include: [ 'test' ],
           exclude: '[]' # optional, e.g. '['node_modules/**', '.git/**', '*.env']'
           pasive: true # optional
