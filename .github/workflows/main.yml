@@ -15,5 +15,5 @@ jobs:
           port: 22
           username: ${{ secrets.APP_USER }}
           password: ${{ secrets.SSH_PASSWORD }}
-          localPath: /home/runner/work/actionTest/*
-          remotePath: 'git@github.com:diogorcazevedo/actionTest.git'
+          localPath: home/*
+          remotePath: git@github.com:diogorcazevedo/actionTest.git
