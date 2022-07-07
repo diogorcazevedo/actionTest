@@ -5,16 +5,14 @@ jobs:
     runs-on: ubuntu-latest
     name: Upload a builded file.
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: FTP Deployer
-        uses: sand4rt/ftp-deployer@v1.4
-        with:
-          sftp: true # optional
-          host: ${{ secrets.APP_HOST }} # e.g. ftp.host.com or sftp.host.com (without ftp:// or ftps://)
-          port: 22 # optional, default is: 21
-          username: ${{ secrets.APP_USER }} # FTP username
-          password: ${{ secrets.SSH_PASSWORD }} # FTP password
-          local_folder: test # optional, local path, default is: dist
-          cleanup: false # optional, remove existing files inside FTP remote folder
-          pasive: true # optional
+      - name: checkout
+        uses: actions/checkout@master
+      - name: deploy
+        id: funny-deploy
+        uses: BoatNg/funny-deploy@master
+        env:
+          REMOTE_HOST: ${{ secrets.APP_HOST }}
+          REMOTE_USER: ${{ secrets.APP_USER }}
+          REMOTE_PASSWORD: ${{ secrets.SSH_PASSWORD }}
+          REMOTE_PATH: "/"
+          SOURCE: "test/"
