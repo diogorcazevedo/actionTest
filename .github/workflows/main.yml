@@ -14,5 +14,4 @@ jobs:
           REMOTE_HOST: ${{ secrets.APP_HOST }}
           REMOTE_USER: ${{ secrets.APP_USER }}
           REMOTE_PASSWORD: ${{ secrets.SSH_PASSWORD }}
-          REMOTE_PATH: "test"
           SOURCE: "test/"
